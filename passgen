@@ -1,0 +1,19 @@
+#!/usr/bin/php
+<?php
+
+$pool = "abcdefghijklmnoprstuvwxyzABCDEFGHIJKLMNOPRSTUVWXYZ0123456789";
+for ( $i = 0; $i < strlen($pool); $i++ ) {
+	$pool = str_shuffle($pool);
+}
+$pool = substr($pool, 0, 22);
+$groups = [4, 3, 4, 4, 3, 4];
+
+$out = [];
+$idx = 0;
+
+reset($groups);
+foreach($groups as $len) {
+	$out[] = substr($pool, $idx, $len);
+	$idx += $len;
+}
+echo implode('-', $out).PHP_EOL;
